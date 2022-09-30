@@ -27,7 +27,7 @@ if (location.host.includes('.github.io') || (process.env.VUE_APP_DEMO_MODE !== u
 }
 // Prod mode
 else {
-    Vue.use(VueNativeSock, `ws://${location.host}:81`, {
+    Vue.use(VueNativeSock, `ws://${Vue.prototype.$pixelitHost}:81`, {
         store: store,
         reconnection: true,
         format: 'json',
