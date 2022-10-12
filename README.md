@@ -1,4 +1,8 @@
-# PixelIt WebUI
+# PixelIt.WebUI
+
+This is the device WebUI for the awesome [PixelIt Project](https://github.com/pixelit-project/PixelIt).
+
+## How to develop?
 
 1. Clone Repo
 2. Install the dependency with `npm install`
