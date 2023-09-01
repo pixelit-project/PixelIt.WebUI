@@ -14,7 +14,9 @@
         "sketchSize": 485520,
         "chipID": 1380454,
         "cpuFreqMHz": 80,
-        "sleepMode": false
+        "sleepMode": false,
+        "uptime": 1337,
+        "resetReason": "Power On"
     },
     "sensor": {
         "humidity": 50,
