@@ -44,7 +44,8 @@ export default new Vuex.Store({
         buttonData: [],
         sysInfoData: [],
         configData: {},
-        liveviewData: {},
+        liveviewData: [],
+        matrixSize: {},
         rules: {
             required: (value) => !!value || value == '0' || 'Required.',
             max20Chars: (value) => value.length <= 20 || 'Max 20 characters',
@@ -448,7 +449,8 @@ export default new Vuex.Store({
 });
 
 function addToLiveviewData(obj, state) {
-    state.liveviewData = obj;
+    const regex = new RegExp(`.{1,${6}}`, 'g');
+    state.liveviewData = obj.match(regex);
 }
 
 function addToLogData(obj, state) {
@@ -508,6 +510,9 @@ function addToSysInfoData(obj, state) {
         }
         if (key === 'pixelitVersion') {
             state.version = obj[key];
+        }
+        if (key === 'matrixsize') {
+            state.matrixSize = obj[key];
         }
     }
 }
@@ -589,6 +594,9 @@ function getDisplayName(key) {
         case 'resetReason':
             key = 'Reset reason';
             break;
+        case 'matrixsize':
+            key = 'Matrix size';
+            break;
     }
     return key;
 }
@@ -644,6 +652,9 @@ function getDisplayValue(key, value) {
             break;
         case 'uptime':
             value = formatUptime(value);
+            break;
+        case 'matrixsize':
+            value = value.cols + ' x ' + value.rows + ' (cols x rows)';
             break;
     }
     return value;

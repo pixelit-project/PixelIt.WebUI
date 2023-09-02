@@ -22,7 +22,7 @@
                     </v-card-title>
                     <hr />
                     <br />
-                    <Liveview class="text-center" :liveviewData="liveview" />
+                    <Liveview class="text-center" :data="liveview" :options="liveviewCanvasSettings" />
                 </v-card>
                 <br />
                 <v-card class="pa-2" elevation="4">
@@ -110,6 +110,9 @@ export default {
         },
         liveview() {
             return this.$store.state.liveviewData;
+        },
+        liveviewCanvasSettings() {
+            return this.$store.state.matrixSize;
         },
     },
 };
