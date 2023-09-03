@@ -90,10 +90,11 @@ export default {
             return highlight(code, languages.json);
         },
         sendJson() {
-            this.$socket.sendObj({ setScreen: JSON.parse(this.testarea.json) });
+            this.$socket.sendObj({ forcedDuration: 5000, setScreen: JSON.parse(this.testarea.json) });
         },
         sendText() {
             this.$socket.sendObj({
+                forcedDuration: 5000,
                 setScreen: {
                     text: {
                         textString: this.testarea.text,
@@ -109,6 +110,7 @@ export default {
         },
         sendBitmap() {
             this.$socket.sendObj({
+                forcedDuration: 5000,
                 setScreen: {
                     bitmapAnimation: {
                         data: JSON.parse(`[${this.testarea.image}]`),
