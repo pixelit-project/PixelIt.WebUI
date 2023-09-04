@@ -55,6 +55,7 @@ export default {
             }
             if (sizeX == 8) {
                 this.$socket.sendObj({
+                    forcedDuration: 5000,
                     setScreen: {
                         bitmapAnimation: {
                             data: JSON.parse(`[${rgB565Array}]`),
@@ -64,6 +65,7 @@ export default {
                 });
             } else {
                 this.$socket.sendObj({
+                    forcedDuration: 5000,
                     setScreen: {
                         bitmap: {
                             data: JSON.parse(rgB565Array),
