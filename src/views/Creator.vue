@@ -126,6 +126,7 @@ export default {
                 }
 
                 this.$socket.sendObj({
+                    forcedDuration: 5000,
                     setScreen: screen,
                 });
             }
