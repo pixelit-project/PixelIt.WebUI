@@ -46,6 +46,7 @@ export default new Vuex.Store({
         configData: {},
         liveviewData: [],
         matrixSize: {},
+        displayHostname: '',
         rules: {
             required: (value) => !!value || value == '0' || 'Required.',
             max20Chars: (value) => value.length <= 20 || 'Max 20 characters',
@@ -93,6 +94,9 @@ export default new Vuex.Store({
                 title: 'Update',
                 icon: 'mdi-tray-arrow-up',
                 page: '/update',
+            },
+            {
+                separator: true,
             },
             {
                 title: 'Pixel Gallery',
@@ -513,6 +517,12 @@ function addToSysInfoData(obj, state) {
         }
         if (key === 'matrixsize') {
             state.matrixSize = obj[key];
+        }
+        if (key == 'hostname') {
+            if (state.displayHostname != obj[key]) {
+                state.displayHostname = obj[key];
+                document.title = 'PixelIt WebUI [' + obj[key] + ']';
+            }
         }
     }
 }

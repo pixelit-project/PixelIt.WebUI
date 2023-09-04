@@ -8,13 +8,14 @@
         <!-- Bar -->
         <v-app-bar app>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-            <v-toolbar-title> <b>PixelIt</b> the Matrix Display </v-toolbar-title>
+            <v-toolbar-title><b>PixelIt</b> - The Matrix Display</v-toolbar-title>
             <v-spacer>
-                <p v-if="!sockedIsConnected && !isDemoMode" class="text-center message">Reconnecting... please wait</p>
+                <v-toolbar-title v-if="!sockedIsConnected && !isDemoMode" class="text-center message">Reconnecting...</v-toolbar-title>
             </v-spacer>
-            <v-icon v-if="sockedIsConnected" color="green" :title="`Connected to ${this.$socket.url}`">mdi-lan-connect </v-icon>
-            <v-icon v-if="isDemoMode" color="green" :title="`Connected to demo data source`">mdi-lan-connect</v-icon>
-            <v-icon v-if="!sockedIsConnected && !isDemoMode" color="red" :title="`Disconnected from ${this.$socket.url}`">mdi-lan-disconnect</v-icon>
+            <v-toolbar-title disabled v-if="hostname != ''" class="hostname padded" :title="`Hostname: ${this.displayHostname}`" v-text="displayHostname"></v-toolbar-title>
+            <v-icon v-if="sockedIsConnected" color="green" class="padded" :title="`Connected to ${this.$socket.url}`">mdi-lan-connect </v-icon>
+            <v-icon v-if="isDemoMode" color="green" class="padded" :title="`Connected to demo data source`">mdi-lan-connect</v-icon>
+            <v-icon v-if="!sockedIsConnected && !isDemoMode" color="red" class="padded" :title="`Disconnected from ${this.$socket.url}`">mdi-lan-disconnect</v-icon>
             <v-btn icon @click="changeTheme" title="Change theme">
                 <v-icon v-if="darkModeActive">mdi-brightness-4</v-icon>
                 <v-icon v-else>mdi-brightness-4</v-icon>
@@ -71,6 +72,9 @@ export default {
         },
         getNavLinks() {
             return this.$store.state.navLinks;
+        },
+        displayHostname() {
+            return this.$store.state.displayHostname;
         },
     },
     methods: {
@@ -162,5 +166,18 @@ async function getUserMapData(state) {
 
 .message {
     color: orange;
+    font-size: 20px;
+}
+
+.hostname {
+    font-size: 14px;
+    text-transform: uppercase;
+    padding-right: 15px;
+}
+
+@media screen and (max-width: 600px) {
+    .hostname {
+        display: none;
+    }
 }
 </style>
