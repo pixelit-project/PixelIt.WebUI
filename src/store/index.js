@@ -47,7 +47,8 @@ export default new Vuex.Store({
         liveviewData: [],
         matrixSize: {},
         rules: {
-            required: (value) => !!value || value == '0' || 'Required.',
+            required: (value) => (!!value && value.trim().length > 0) || value == '0' || 'Required.',
+            notStartsWithSpace: (value) => !value.startsWith(' ') || 'Must not start with a space.',
             max20Chars: (value) => value.length <= 20 || 'Max 20 characters',
             email: (value) => {
                 const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -99,17 +100,17 @@ export default new Vuex.Store({
                 icon: 'mdi-image-outline',
                 page: '/gallery',
             },
-            {
-                title: 'Pixel Creator',
-                icon: 'mdi-pencil-box-outline',
-                url: 'https://pixelit.bastelbunker.de/PixelCreator',
-                target: '_blank',
-            },
             // {
-            //     title: "Pixel Creator",
-            //     icon: "mdi-pencil-box-outline",
-            //     page: "/creator"
+            //     title: 'Pixel Creator',
+            //     icon: 'mdi-pencil-box-outline',
+            //     url: 'https://pixelit.bastelbunker.de/PixelCreator',
+            //     target: '_blank',
             // },
+            {
+                title: "Pixel Creator",
+                icon: "mdi-pencil-box-outline",
+                page: "/creator"
+            },
             {
                 title: 'Forum',
                 icon: 'mdi-forum-outline',
