@@ -48,7 +48,8 @@ export default new Vuex.Store({
         matrixSize: {},
         displayHostname: '',
         rules: {
-            required: (value) => !!value || value == '0' || 'Required.',
+            required: (value) => (!!value && value.trim().length > 0) || value == '0' || 'Required.',
+            notStartsWithSpace: (value) => !value.startsWith(' ') || 'Must not start with a space.',
             max20Chars: (value) => value.length <= 20 || 'Max 20 characters',
             email: (value) => {
                 const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
