@@ -103,12 +103,6 @@ export default new Vuex.Store({
                 icon: 'mdi-image-outline',
                 page: '/gallery',
             },
-            {
-                title: 'Pixel Creator',
-                icon: 'mdi-pencil-box-outline',
-                url: 'https://pixelit.bastelbunker.de/PixelCreator',
-                target: '_blank',
-            },
             // {
             //     title: "Pixel Creator",
             //     icon: "mdi-pencil-box-outline",
