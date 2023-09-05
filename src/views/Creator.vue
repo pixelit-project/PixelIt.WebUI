@@ -22,6 +22,9 @@
                     <p></p>
                     <v-textarea filled outlined v-model="array8x8String" rows="5" hide-details></v-textarea>
                     <v-switch v-model="livedraw" label="Live draw" hide-details dense></v-switch>
+                    <div class="text-center">
+                        <ButtonCondition color="info" :condition=true text="Send Text" icon="mdi-cloud-upload" />
+                    </div>
                 </v-card>
             </v-col>
             <v-col cols="12" lg="4">
@@ -35,8 +38,8 @@
                 <v-card class="pa-3" elevation="4">
                     <Art :colors="colors" pixelCount="256" :func="onclick" />
                     <p></p>
-                    <v-textarea filled outlined v-model="array8x32String" rows="5" hide-details></v-textarea>
-                    <v-switch v-model="livedraw" label="Live draw" :disabled="!sockedIsConnected" hide-details dense></v-switch>
+                    <v-textarea filled outlined v-model="array8x32String" rows="9" hide-details></v-textarea>
+                    <v-switch v-model="livedraw" label="Live draw" :disabled="!sockedIsConnected" hide-details dense></v-switch>           
                 </v-card>
             </v-col>
             <v-col cols="12" lg="4">
