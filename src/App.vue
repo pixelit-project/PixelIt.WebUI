@@ -12,7 +12,7 @@
             <v-spacer>
                 <v-toolbar-title v-if="!sockedIsConnected && !isDemoMode" class="text-center message">Reconnecting...</v-toolbar-title>
             </v-spacer>
-            <v-toolbar-title disabled v-if="hostname != ''" class="hostname padded" :title="`Hostname: ${this.displayHostname}`" v-text="displayHostname"></v-toolbar-title>
+            <div  v-if="displayHostname != ''" class="hostname padded" :title="`Hostname: ${this.displayHostname}`" v-text="displayHostname"></div>
             <v-icon v-if="sockedIsConnected" color="green" class="padded" :title="`Connected to ${this.$socket.url}`">mdi-lan-connect </v-icon>
             <v-icon v-if="isDemoMode" color="green" class="padded" :title="`Connected to demo data source`">mdi-lan-connect</v-icon>
             <v-icon v-if="!sockedIsConnected && !isDemoMode" color="red" class="padded" :title="`Disconnected from ${this.$socket.url}`">mdi-lan-disconnect</v-icon>
