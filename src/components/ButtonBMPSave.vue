@@ -13,7 +13,7 @@
                 </v-card-title>
                 <v-card-text>
                     <v-text-field  ref="field" v-model="bitmapName"  label="Bitmap Name" :rules="[rules.required, rules.notStartsWithSpace]"></v-text-field>
-                    <v-text-field v-model="userName" @change="changeUserName" label="Your Username"></v-text-field>
+                    <v-text-field v-model="userName" @change="changeUserName" label="Your Username" :rules="[rules.notStartsWithSpace]"></v-text-field>
                 </v-card-text>
                 <v-card-actions>
                     <v-spacer></v-spacer>
@@ -35,7 +35,7 @@ export default {
         return {
             dialog: false,
             isValid: false,
-            bitmapName: '',
+            bitmapName: ' ',
             userName: this.$cookies.get('userNameForUpload') || '',                        
         };        
     },
@@ -91,7 +91,7 @@ export default {
                 headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     rgb565array: this.cleanedData,
-                    userName: this.userName,
+                    userName: this.userName != '' ? this.userName : 'Not specified',
                     name: this.bitmapName,
                     sizeX: this.getSizeX,
                     sizeY: 8,

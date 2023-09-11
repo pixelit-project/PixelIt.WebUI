@@ -24,7 +24,9 @@
                             <v-icon>mdi-arrow-right-circle-outline</v-icon>
                         </v-btn>
                     </div>
-                    <v-text-field prepend-inner-icon="mdi-identifier" class="id" dense density="compact" outlined hide-details single-line filled :value="bmp.id" read-only text-center append-outer-icon="mdi-content-copy" @click:append-outer="copyText(bmp.id, $event)"></v-text-field>
+                    <div class="text-center">
+                        <v-text-field prepend-inner-icon="mdi-identifier" rounded dense hide-details readonly :value="bmp.id" append-outer-icon="mdi-content-copy" @click:append-outer="copyText(bmp.id, $event)"></v-text-field>
+                    </div>
                 </v-card>
             </v-col>
         </v-row>
@@ -62,7 +64,6 @@ export default {
             }
             if (sizeX == 8) {
                 this.$socket.sendObj({
-                    forcedDuration: 5000,
                     setScreen: {
                         bitmapAnimation: {
                             data: JSON.parse(`[${rgB565Array}]`),
@@ -71,8 +72,7 @@ export default {
                     },
                 });
             } else {
-                this.$socket.sendObj({
-                    forcedDuration: 5000,
+                this.$socket.sendObj({                   
                     setScreen: {
                         bitmap: {
                             data: JSON.parse(rgB565Array),
@@ -122,8 +122,5 @@ canvas {
     display: block;
     border: 1px solid;
     border-color: grey;
-}
-.id {
-    text-align: center;
 }
 </style>

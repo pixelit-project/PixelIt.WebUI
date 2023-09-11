@@ -20,7 +20,7 @@ if (process.env.VUE_APP_PIXELIT_HOST !== undefined) {
 if (process.env.VUE_APP_API_SERVER !== undefined) {
     Vue.prototype.$apiServerBaseURL = process.env.VUE_APP_API_SERVER;
 } else {
-    Vue.prototype.$apiServerBaseURL = 'https://pixelit.bastelbunker.de/api/';
+    Vue.prototype.$apiServerBaseURL = 'https://pixelit.bastelbunker.de/api';
 }
 
 
