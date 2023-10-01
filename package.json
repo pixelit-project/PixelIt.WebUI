@@ -15,7 +15,7 @@
         "@babel/polyfill": "^7.11.5",
         "@types/prismjs": "^1.26.1",
         "core-js": "^3.32.2",
-        "leaflet": "^1.8.0",
+        "leaflet": "^1.9.4",
         "mutationobserver-shim": "^0.3.7",
         "popper.js": "^1.16.1",
         "portal-vue": "^2.1.7",
