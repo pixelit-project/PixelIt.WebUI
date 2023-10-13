@@ -729,7 +729,9 @@ function getDisplayValue(key, value) {
             value = value.cols + ' x ' + value.rows + ' (cols x rows)';
             break;
         case 'battery':
-            value = value + ' %';
+            if (typeof value == 'number') {
+                value = value + ' %';
+            }
             break;
     }
     return value;
