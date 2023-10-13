@@ -525,28 +525,32 @@ function addToLogData(obj, state) {
 
 function addToSensorData(obj, state) {
     for (const key in obj) {
-        const oldEntry = state.sensorData.find((x) => x.name == getDisplayName(key));
-        if (oldEntry) {
-            oldEntry.value = getDisplayValue(key, obj[key]);
-        } else {
-            state.sensorData.push({
-                name: getDisplayName(key),
-                value: getDisplayValue(key, obj[key]),
-            });
+        if (key != 'hostname') {
+            const oldEntry = state.sensorData.find((x) => x.name == getDisplayName(key));
+            if (oldEntry) {
+                oldEntry.value = getDisplayValue(key, obj[key]);
+            } else {
+                state.sensorData.push({
+                    name: getDisplayName(key),
+                    value: getDisplayValue(key, obj[key]),
+                });
+            }
         }
     }
 }
 
 function addToButtonData(obj, state) {
     for (const key in obj) {
-        const oldEntry = state.buttonData.find((x) => x.name == getDisplayName(key));
-        if (oldEntry) {
-            oldEntry.value = getDisplayValue(key, obj[key]);
-        } else {
-            state.buttonData.push({
-                name: getDisplayName(key),
-                value: getDisplayValue(key, obj[key]),
-            });
+        if (key != 'hostname') {
+            const oldEntry = state.buttonData.find((x) => x.name == getDisplayName(key));
+            if (oldEntry) {
+                oldEntry.value = getDisplayValue(key, obj[key]);
+            } else {
+                state.buttonData.push({
+                    name: getDisplayName(key),
+                    value: getDisplayValue(key, obj[key]),
+                });
+            }
         }
     }
 }
@@ -604,7 +608,7 @@ function getDisplayName(key) {
             key = 'Pressure';
             break;
         case 'pixelitVersion':
-            key = 'PixelIt version';
+            key = 'PixelIt Version';
             break;
         case 'hostname':
             key = 'Hostname';
@@ -616,7 +620,7 @@ function getDisplayName(key) {
             key = 'Sketch size';
             break;
         case 'freeSketchSpace':
-            key = 'Free sketch space';
+            key = 'Free Sketch Space';
             break;
         case 'wifiRSSI':
             key = 'Wifi RSSI';
@@ -668,6 +672,9 @@ function getDisplayName(key) {
             break;
         case 'battery':
             key = 'Battery';
+            break;
+        case 'buildSection':
+            key = 'Build Section';
             break;
     }
     return key;
