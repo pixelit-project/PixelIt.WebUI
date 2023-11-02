@@ -92,6 +92,11 @@ export default new Vuex.Store({
                 page: '/testarea',
             },
             {
+                title: 'Statistics',
+                icon: 'mdi-chart-bar',
+                page: '/statistics',
+            },
+            {
                 title: 'Update',
                 icon: 'mdi-tray-arrow-up',
                 page: '/update',
@@ -446,6 +451,7 @@ export default new Vuex.Store({
         pixelCreatorPixel: {},
         telemetryData: '',
         userMapData: [],
+        statistics: {},
     },
     mutations: {
         SOCKET_ONOPEN(state, event) {

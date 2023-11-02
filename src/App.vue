@@ -37,6 +37,7 @@ export default {
 
         getCurrentGitReleaseData(this);
         getUserMapData(this);
+        getStatistics(this);
         sendTelemetry(this);
 
         // Check again every 15 minutes
@@ -47,6 +48,7 @@ export default {
         // Check again every 15 minutes
         setInterval(() => {
             getUserMapData(this);
+            getStatistics(this);
         }, 1000 * 60 * 15);
 
         // Send again every 12 houres
@@ -133,6 +135,15 @@ async function getUserMapData(vue) {
         console.log(`getUserMapData: error (${error})`);
     }
 }
+
+async function getStatistics(vue) {
+    try {
+        vue.$store.state.statistics = await (await fetch(`${vue.$apiServerBaseURL}/statistics`)).json();
+    } catch (error) {
+        console.log(`getStatistics: error (${error})`);
+    }
+}
+
 </script>
 
 <style>

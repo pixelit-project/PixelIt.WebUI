@@ -10,6 +10,7 @@ import VueNativeSock from 'vue-native-websocket';
 import VueSpinners from 'vue-spinners';
 import 'leaflet/dist/leaflet.css';
 import demoJSON from '../public/demoData/demo.json';
+import VueApexCharts from 'vue-apexcharts'
 
 if (process.env.VUE_APP_PIXELIT_HOST !== undefined) {
     Vue.prototype.$pixelitHost = process.env.VUE_APP_PIXELIT_HOST;
@@ -44,9 +45,11 @@ else {
 
 Vue.$cookies.config('10y');
 Vue.config.productionTip = false;
+Vue.component('apexchart', VueApexCharts)
 new Vue({
     router,
     store,
     vuetify,
+    VueApexCharts,
     render: (h) => h(App),
 }).$mount('#app');
