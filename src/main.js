@@ -24,6 +24,7 @@ if (process.env.VUE_APP_API_SERVER !== undefined) {
     Vue.prototype.$apiServerBaseURL = 'https://pixelit.bastelbunker.de/api';
 }
 
+Vue.prototype.$client = 'PixelIt-Webui';
 
 Vue.use(VueSpinners);
 Vue.use(VueCookies);

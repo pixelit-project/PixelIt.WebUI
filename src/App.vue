@@ -118,8 +118,8 @@ async function sendTelemetry(vue) {
             }
             // send telemetry
             fetch(`${vue.$apiServerBaseURL}/telemetry`, {
-                method: 'POST',
-                headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+                method: 'POST',      
+                headers: { Accept: 'application/json', 'Content-Type': 'application/json', 'Client': vue.$client},      
                 body: vue.$store.state.telemetryData,
             });
         } else {
