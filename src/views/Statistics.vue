@@ -1,13 +1,22 @@
 <template>
     <v-container class="statistics">
+        <v-row>
+                <v-col cols="12" lg="12">
+                    <v-card class="pa-2" elevation="4">
+                        <v-card-text class="text-md-center">
+                            These statistics are created with the telemetry data of the PixelIts that have reported in the last 30 days.<br>
+                             <b>Thanks to everyone who shares this data with us!</b>
+                        </v-card-text>
+                    </v-card>
+                </v-col>
+            </v-row>
             <v-row>
                 <v-col cols="12" lg="4">
                     <v-card class="pa-1" elevation="4">
                         <v-card-title>
                             <h2>Builds</h2>
                         </v-card-title>
-                        <hr />
-              
+                        <hr />              
                         <apexchart height="600px" width="100%" type="bar" :options="chartOptions" :series="buildStats"></apexchart>
                     </v-card>                   
                 </v-col>
@@ -16,32 +25,51 @@
                         <v-card-title>
                             <h2>Versions</h2>
                         </v-card-title>
-                        <hr />
-                      
+                        <hr />                      
                         <apexchart height="600px" width="100%" type="bar" :options="chartOptions" :series="versionStats"></apexchart>                  
                     </v-card>
                 </v-col>
                 <v-col cols="12" lg="4">
                     <v-card class="pa-2" elevation="4">
                         <v-card-title>
-                            <h2>Country</h2>
+                            <h2>Sensors</h2>
+                        </v-card-title>
+                        <hr />                      
+                        <apexchart height="600px" width="100%" type="bar" :options="chartOptions" :series="sensorStats"></apexchart>                  
+                    </v-card>
+                </v-col>
+            </v-row>
+            <v-row>
+                <v-col cols="12" lg="8">
+                    <v-card class="pa-2" elevation="4">
+                        <v-card-title>
+                            <h2>Countrys</h2>
                         </v-card-title>
                         <hr />                    
-                       <apexchart type="donut" :options="countryChartOptions" :series="countryStats"></apexchart>     
-                    </v-card>                   
+                       <apexchart height="600px" type="donut" :options="countryChartOptions" :series="countryStats"></apexchart>     
+                    </v-card>               
+                </v-col>
+                <v-col cols="12" lg="4">
+                    <v-card class="pa-2" elevation="4">
+                        <v-card-title>
+                            <h2>Matrix Types</h2>
+                        </v-card-title>
+                        <hr />                      
+                        <apexchart height="600px" width="100%" type="bar" :options="chartOptions" :series="matrixStats"></apexchart>                  
+                    </v-card>
                 </v-col>
             </v-row>
             <v-row>
                 <v-col cols="12" lg="12">
-                <v-card class="pa-2" elevation="4">
-                    <v-card-title>
-                        <h2>Usermap</h2>
-                    </v-card-title>
-                    <hr />
-                    <p></p>
-                    <UserMap :mapZoom= 3  :coords="userMapData" height="600px" />
-                </v-card>
-            </v-col>
+                    <v-card class="pa-2" elevation="4">
+                        <v-card-title>
+                            <h2>Usermap</h2>
+                        </v-card-title>
+                        <hr />
+                        <p></p>
+                        <UserMap :mapZoom= 3  :coords="userMapData" height="600px" />
+                    </v-card>
+                </v-col>
             </v-row>
     </v-container>
 </template>
@@ -72,6 +100,22 @@ export default {
             if (this.$store.state.statistics.versionStats){
                 return [ { name: 'Count', data: this.$store.state.statistics.versionStats
                     .map(({version: x, count})=>({count, x}))
+                    .map(({count: y, x})=>({y, x}))}];
+            }
+            return [];           
+        }, 
+        sensorStats() {
+            if (this.$store.state.statistics.sensorStats){
+                return [ { name: 'Count', data: this.$store.state.statistics.sensorStats
+                    .map(({sensor: x, count})=>({count, x}))
+                    .map(({count: y, x})=>({y, x}))}];
+            }
+            return [];           
+        }, 
+        matrixStats() {
+            if (this.$store.state.statistics.matrixStats){
+                return [ { name: 'Count', data: this.$store.state.statistics.matrixStats
+                    .map(({matrix: x, count})=>({count, x}))
                     .map(({count: y, x})=>({y, x}))}];
             }
             return [];           
