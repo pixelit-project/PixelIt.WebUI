@@ -16,7 +16,7 @@ export default new Vuex.Store({
             json: JSON.stringify(
                 {
                     text: {
-                        textString: 'Pixel it 😀',
+                        textString: 'PixelIt 😀',
                         scrollText: 'auto',
                         bigFont: false,
                         centerText: false,
