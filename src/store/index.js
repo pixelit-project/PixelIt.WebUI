@@ -450,7 +450,7 @@ export default new Vuex.Store({
         bmpsFromAPI: [],
         pixelCreatorPixel: {},
         telemetryData: '',
-        userMapData: [],
+        userMapData: { coords: [] },
         statistics: {},
     },
     mutations: {
