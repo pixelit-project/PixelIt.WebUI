@@ -21,7 +21,7 @@
         "popper.js": "^1.16.1",
         "portal-vue": "^2.1.7",
         "prismjs": "^1.29.0",
-        "vue": "^2.7.8",
+        "vue": "^3.4.37",
         "vue-apexcharts": "^1.6.2",
         "vue-cookies": "^1.8.3",
         "vue-native-websocket": "^2.0.15",
