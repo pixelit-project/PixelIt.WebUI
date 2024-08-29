@@ -169,17 +169,19 @@ export default {
         },
         async downloadConfig(){          
             try {
-                //const jsonData = JSON.stringify(await (await fetch(`http://${this.$pixelitHost}/api/config`)).json());
                 const jsonData = JSON.stringify(this.$store.state.configData);                
                 const blob = new Blob([jsonData], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
 
                 const link = document.createElement('a');
                 link.href = url;
-                link.download = `pixlitConfig_${this.$store.state.version}.json`;
 
+                const version = this.$store.state.version;
+                const buildSection = this.$store.state.sysInfoData.find((x) => x.name === 'Build Section').value;
+
+                link.download = `pixlitConfig_${version}_${buildSection}.json`;
                 link.click();
-
+                
                 URL.revokeObjectURL(url);
             } catch (error) {
                 console.log(`downloadConfig: error (${error})`);
