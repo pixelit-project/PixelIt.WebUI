@@ -177,11 +177,11 @@ export default {
                 link.href = url;
 
                 const version = this.$store.state.version;
-                const buildSection = this.$store.state.sysInfoData.find((x) => x.name === 'Build Section').value;
+                const buildSection = JSON.parse(this.$store.state.telemetryData).buildSection;
 
                 link.download = `pixlitConfig_${version}_${buildSection}.json`;
                 link.click();
-                
+
                 URL.revokeObjectURL(url);
             } catch (error) {
                 console.log(`downloadConfig: error (${error})`);
