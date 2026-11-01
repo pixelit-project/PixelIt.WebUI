@@ -52,3 +52,13 @@ and `downloadURL` (browser download URL). Deploy the corresponding PixelIt.API
 extension before this WebUI. With older API deployments or unknown hardware,
 the page shows release notes instead of guessing a firmware URL or querying the
 GitHub API directly. Full-upgrade images are excluded from OTA download selection.
+
+## Reporting gallery icons
+
+The flag button in the gallery opens a report dialog. Users select a reason and may add details; details are
+required for "Other reason". The combined reason and details (up to 1000 characters)
+are sent to PixelIt.API's `POST /api/reports`; no login is required.
+A moderator decides whether to hide the icon. Reports do not delete it immediately.
+Deploy the API's moderation endpoints before this WebUI. Gallery reads and reports
+use the configured `VUE_APP_API_SERVER` base URL. Reporting is disabled in demo mode.
+No report requests are sent to the display and no background polling is added.
