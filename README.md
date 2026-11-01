@@ -43,3 +43,12 @@ This is the device WebUI for the awesome [PixelIt Project](https://github.com/pi
      npm run serve-win
      ```
    - The server will start on port `8080`. You can access it at `http://localhost:8080`.
+
+## Firmware release downloads
+
+The update page reuses `/api/Releases` data from PixelIt.API. Direct firmware
+links require `fwdownloads` entries containing `fileName` (original asset name)
+and `downloadURL` (browser download URL). Deploy the corresponding PixelIt.API
+extension before this WebUI. With older API deployments or unknown hardware,
+the page shows release notes instead of guessing a firmware URL or querying the
+GitHub API directly. Full-upgrade images are excluded from OTA download selection.
