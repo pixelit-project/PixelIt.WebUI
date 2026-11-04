@@ -3,6 +3,10 @@
 Creator and Test Area use the connected firmware's advertised animation frame and
 pixel budgets. Older firmware falls back to 28 frames / 1,792 pixels; ESP32 builds
 can advertise larger limits. Reconnects clear the previous device limits.
+Demo mode advertises the ESP32 budgets from the companion firmware's
+`include/AnimationLimits.h` and `include/ScreenLimits.h` for Creator, Test Area
+and Gallery compatibility checks.
+Saving icons to the Gallery database is disabled in demo mode.
 
 This is the device WebUI for the awesome [PixelIt Project](https://github.com/pixelit-project/PixelIt).
 

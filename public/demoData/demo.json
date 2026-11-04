@@ -2,6 +2,10 @@
     "sysinfo": {
         "pixelitVersion": "1.3.3.7",
         "note": "This is demo data",
+        "maxAnimationFrames": 160,
+        "maxAnimationPixels": 10240,
+        "maxBitmapPixels": 256,
+        "maxScreenMessageSize": 65535,
         "hostname": "PixelIt-Demo",
         "freeSketchSpace": 2658304,
         "wifiRSSI": -56,
