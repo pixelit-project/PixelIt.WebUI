@@ -103,3 +103,28 @@ visit fetches the current list once. Failed uploads preserve the cache and drawi
 Deploy the companion API cache-invalidation change to make new uploads visible
 immediately rather than waiting for the API cache to expire. Include these controls
 in the stable Gallery/Creator user guide when releasing the WebUI.
+
+## MQTT sensor publishing (development firmware)
+
+Options exposes sensor publishing controls when the connected firmware advertises
+`config.mqttSensorPublish`. Older firmware shows a firmware-update hint instead of editable controls. Event mode checks
+each sample and optionally limits send frequency; periodic mode checks at the
+configured interval. Each measurement has its own change threshold, compared with
+the last successfully published sensor payload. Temperature uses the configured
+°C/°F unit, humidity and battery use percentage points, pressure hPa, gas kΩ and
+illuminance lx. Any qualifying measurement publishes its whole topic payload;
+sensor and lux topics have independent baselines. Zero thresholds accept any
+change, while zero minimum/maximum intervals disable the additional interval.
+A maximum silent interval also republishes unchanged readings. Initial connection,
+Home Assistant discovery and forced publications bypass normal filtering.
+
+Intervals are whole seconds (check interval 3–86400, minimum/maximum 0–86400).
+A nonzero maximum must be at least the active check/minimum interval. Thresholds
+must be finite numbers from 0 to 1000000. Invalid settings cannot be sent by the
+form. The firmware preserves previous publishing settings on invalid input.
+Sensor sampling and WebSocket updates retain their existing cadence, so timings
+are evaluated on the next available sample rather than exact wall-clock deadlines.
+
+Run `node tests/sensor-publish.test.cjs` and `npm run build`. The matching WebUI
+bundle must be published and embedded by the firmware pipeline before delivery.
+ESP8266 timing and peak-memory validation on hardware remains required.
