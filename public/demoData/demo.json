@@ -78,6 +78,7 @@
         "clockDrawWeekDays": true,
         "scrollTextDefaultDelay": 100,
         "bootScreenAktiv": true,
+        "wifiScreenAktiv": true,
         "bootSound": true,
         "mqttAktiv": false,
         "mqttUser": "",

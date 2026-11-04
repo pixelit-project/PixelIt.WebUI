@@ -128,3 +128,14 @@ are evaluated on the next available sample rather than exact wall-clock deadline
 Run `node tests/sensor-publish.test.cjs` and `npm run build`. The matching WebUI
 bundle must be published and embedded by the firmware pipeline before delivery.
 ESP8266 timing and peak-memory validation on hardware remains required.
+
+
+## Startup WiFi screen
+
+Options → Defaults → **Show WiFi screen during startup** controls the entire
+connection screen (label and moving trail), including the hotspot notice. It is
+independent of Bootscreen active and defaults to enabled. Save configuration to
+apply it at the next startup. Requires firmware advertising the boolean
+`wifiScreenAktiv`; older firmware shows an update hint instead of an editable
+control. Deploy the matching production bundle before regenerating the firmware's
+embedded index, so its hashed asset URLs exist on the WebUI host.

@@ -28,10 +28,11 @@
                         <v-text-field v-model="config.scrollTextDefaultDelay" type="number" label="Scrolltext delay" hint="larger number is slower" suffix="milliseconds" :rules="[rules.required, rules.min0]"></v-text-field>
                         <v-text-field v-model="config.hostname" label="Hostname"></v-text-field>
                         <v-text-field v-model="config.note" label="Note"></v-text-field>
-                        <v-switch v-model="config.bootScreenAktiv" label="Bootscreen active" hide-details dense></v-switch>
+                        <v-switch v-model="config.bootScreenAktiv" label="Boot-Screen active" hide-details dense></v-switch>
+                        <v-switch v-model="config.wifiScreenAktiv" label="WiFi-Screen active" hide-details dense></v-switch>
                         <v-switch v-model="config.bootBatteryScreen" label="Show battery status on boot" hide-details dense v-if="showBatteryBtn"></v-switch>
                         <v-switch v-model="config.bootSound" label="Play sound on boot" hide-details dense></v-switch>
-                        <v-switch v-model="config.includePrereleases" label="Include beta releases in update searches" hint="Also includes other prereleases. These versions may be unstable." persistent-hint dense></v-switch>
+                        <v-switch v-model="config.includePrereleases" label="Include beta releases in update searches" hide-details dense></v-switch>
                         <v-switch v-model="config.checkUpdateScreen" label="Display on matrix when new firmware is available" hide-details dense></v-switch>
                     </v-card>
                     <v-card class="ui-panel" elevation="2">
