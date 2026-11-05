@@ -130,6 +130,14 @@ bundle must be published and embedded by the firmware pipeline before delivery.
 ESP8266 timing and peak-memory validation on hardware remains required.
 
 
+## Boot animation
+
+Under Options → Defaults → **Boot animation**, select **Gradient letters**
+(the default) or **Multicolor letters** (the original per-letter colors).
+Enable **Boot-Screen active** to use the selected animation. Save the
+configuration to apply the selection on restart. The selector appears on
+firmware that reports a supported `bootScreenStyle` value.
+
 ## Startup WiFi screen
 
 Options → Defaults → **Show WiFi screen during startup** controls the entire
