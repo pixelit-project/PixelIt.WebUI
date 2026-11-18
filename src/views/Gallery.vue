@@ -1,17 +1,20 @@
 <template>
     <v-container class="gallery app-page">
         <v-sheet v-if="!isLoading" class="gallery-filters" :style="{ top: ($vuetify.application.top + 8) + 'px' }" rounded elevation="2">
-            <v-row dense>
-                <v-col cols="12" md="6">
-                    <v-text-field v-model="message" prepend-inner-icon="mdi-magnify" single-line outlined filled hide-details auto-grow label="Search for name or ID" type="text"></v-text-field>
-                </v-col>
-                <v-col cols="6" md="3">
-                    <v-select v-model="animationFilter" :items="animationFilters" label="Animation" prepend-inner-icon="mdi-animation-play" outlined filled hide-details></v-select>
-                </v-col>
-                <v-col cols="6" md="3">
-                    <v-select v-model="sizeFilter" :items="sizeFilters" label="Size" prepend-inner-icon="mdi-image-size-select-large" outlined filled hide-details></v-select>
-                </v-col>
-            </v-row>
+            <div class="gallery-filter-controls">
+                <div class="gallery-search">
+                    <v-text-field v-model="message" prepend-inner-icon="mdi-magnify" single-line outlined filled dense hide-details label="Search for name or ID" type="text"></v-text-field>
+                </div>
+                <div class="gallery-animation-filter">
+                    <v-select v-model="animationFilter" :items="animationFilters" label="Animation" outlined filled dense hide-details></v-select>
+                </div>
+                <div class="gallery-size-filter">
+                    <v-select v-model="sizeFilter" :items="sizeFilters" label="Size" outlined filled dense hide-details></v-select>
+                </div>
+                <div class="gallery-sort">
+                    <v-select v-model="sortOrder" :items="sortOrders" label="Sort by" outlined filled dense hide-details></v-select>
+                </div>
+            </div>
             <div class="gallery-compatibility-filter">
                 <v-checkbox v-model="showIncompatible" :disabled="!deviceLimits" hide-details dense
                     label="Also show images incompatible with this device" class="ma-0 pa-0" />
@@ -95,6 +98,7 @@ import BmpDialog from '../components/BmpDialog';
 import ButtonBMPReport from '../components/ButtonBMPReport';
 import GalleryViewportItem from '../components/GalleryViewportItem';
 
+const galleryNameCollator = new Intl.Collator(undefined, { numeric: true, sensitivity: 'base' });
 const BATCH_SIZE = 24;
 let pendingBMPsRequest = null;
 export default {
@@ -125,6 +129,14 @@ export default {
             filterRevision: 0,
             animationFilter: 'all',
             sizeFilter: 'all',
+            sortOrder: 'default',
+            sortOrders: [
+                { text: 'Default', value: 'default' },
+                { text: 'Name (A–Z)', value: 'name-asc' },
+                { text: 'Name (Z–A)', value: 'name-desc' },
+                { text: 'ID (ascending)', value: 'id-asc' },
+                { text: 'ID (descending)', value: 'id-desc' },
+            ],
             animationFilters: [
                 { text: 'All bitmaps', value: 'all' },
                 { text: 'Animated', value: 'animated' },
@@ -154,6 +166,7 @@ export default {
         sizeFilter() {
             this.resetResults();
         },
+        sortOrder() { this.resetResults(); },
         showIncompatible() { this.resetResults(); },
         compatibilityKey() { this.resetResults(); },
         visibleBMPs() {
@@ -240,7 +253,18 @@ export default {
             return this.deviceLimits ? this.matchingBMPs.filter(bmp => !galleryCompatibility(bmp, this.deviceLimits).ok).length : 0;
         },
         getBMPs() {
-            return this.deviceLimits && !this.showIncompatible ? this.matchingBMPs.filter(bmp => galleryCompatibility(bmp, this.deviceLimits).ok) : this.matchingBMPs;
+            const results = this.deviceLimits && !this.showIncompatible
+                ? this.matchingBMPs.filter(bmp => galleryCompatibility(bmp, this.deviceLimits).ok)
+                : this.matchingBMPs;
+            if (this.sortOrder === 'default') return results;
+
+            const byName = this.sortOrder.startsWith('name-');
+            const direction = this.sortOrder.endsWith('-desc') ? -1 : 1;
+            return results.slice().sort((a, b) => {
+                const idOrder = a.id - b.id;
+                if (!byName) return direction * idOrder;
+                return direction * galleryNameCollator.compare(a.name, b.name) || idOrder;
+            });
         },
         matchingBMPs() {
             const bmps = this.$store.state.bmpsFromAPI;
@@ -297,6 +321,33 @@ function getBMPsFromAPI(baseURL) {
     z-index: 4;
     padding: 12px;
     margin-bottom: 20px;
+}
+
+.gallery-filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.gallery-search {
+    flex: 1 1 240px;
+    min-width: 0;
+}
+.gallery-filter-controls > div {
+    max-width: 100%;
+}
+.gallery-animation-filter {
+    width: 10.5rem;
+}
+.gallery-size-filter {
+    width: 8rem;
+}
+.gallery-sort {
+    width: 11.5rem;
+}
+@media (max-width: 650px) {
+    .gallery-search {
+        flex-basis: 100%;
+    }
 }
 
 .gallery-compatibility-filter {
