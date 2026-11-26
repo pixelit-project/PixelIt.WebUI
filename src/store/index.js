@@ -421,6 +421,96 @@ export default new Vuex.Store({
                 value: 'SPI_CS0_GPIO_NUM',
             },
         ],
+        pinsESP32C3: [
+            {
+                text: 'GPIO 0',
+                value: 'GPIO_NUM_0',
+            },
+            {
+                text: 'GPIO 1',
+                value: 'GPIO_NUM_1',
+            },
+            {
+                text: 'GPIO 2',
+                value: 'GPIO_NUM_2',
+            },
+            {
+                text: 'GPIO 3',
+                value: 'GPIO_NUM_3',
+            },
+            {
+                text: 'GPIO 4',
+                value: 'GPIO_NUM_4',
+            },
+            {
+                text: 'GPIO 5',
+                value: 'GPIO_NUM_5',
+            },
+            {
+                text: 'GPIO 6',
+                value: 'GPIO_NUM_6',
+            },
+            {
+                text: 'GPIO 7',
+                value: 'GPIO_NUM_7',
+            },
+            {
+                text: 'GPIO 8',
+                value: 'GPIO_NUM_8',
+            },
+            {
+                text: 'GPIO 9',
+                value: 'GPIO_NUM_9',
+            },
+            {
+                text: 'GPIO 10',
+                value: 'GPIO_NUM_10',
+            },
+            {
+                text: 'GPIO 11',
+                value: 'GPIO_NUM_11',
+            },
+            {
+                text: 'GPIO 12',
+                value: 'GPIO_NUM_12',
+            },
+            {
+                text: 'GPIO 13',
+                value: 'GPIO_NUM_13',
+            },
+            {
+                text: 'GPIO 14',
+                value: 'GPIO_NUM_14',
+            },
+            {
+                text: 'GPIO 15',
+                value: 'GPIO_NUM_15',
+            },
+            {
+                text: 'GPIO 16',
+                value: 'GPIO_NUM_16',
+            },
+            {
+                text: 'GPIO 17',
+                value: 'GPIO_NUM_17',
+            },
+            {
+                text: 'GPIO 18',
+                value: 'GPIO_NUM_18',
+            },
+            {
+                text: 'GPIO 19',
+                value: 'GPIO_NUM_19',
+            },
+            {
+                text: 'GPIO 20',
+                value: 'GPIO_NUM_20',
+            },
+            {
+                text: 'GPIO 21',
+                value: 'GPIO_NUM_21',
+            },
+        ],
         btnLowHigh: [
             {
                 text: 'Active low',
